@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Nguyen"
+  given-names: "Nam"
+  orcid: ""
+- family-names: "Nguyen"
+  given-names: "Thanh Binh"
+  orcid: ""
+- family-names: "Nghiem"
+  given-names: "Truong X."
+  orcid: "https://orcid.org/0000-0003-4841-3800"
+title: "Comprehensive Comparison of Physics-Informed Machine Learning for Data-Driven Modeling of HVAC Systems"
+version: 1.0.0
+doi: https://doi.org/10.5281/zenodo.15710237
+date-released: 2025-06-21
+url: "https://github.com/nxt-lab/Code-PIML-for-HVAC-systems-public"
