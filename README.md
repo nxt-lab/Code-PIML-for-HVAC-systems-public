@@ -49,7 +49,6 @@ pip install -r requirements.txt
 Let’s run the **ANN model** as an example:
 
 ```python
-cd Code_for_final_paper/room104/Basic_method/Baseline
 python ANN.py
 ```
 
