@@ -16,9 +16,11 @@ def data_split(N, N_end, temp, supply, air, output):
 
 def load_hvac_data(choice="filtered", start=1, train_amount=100):
     if choice == "filtered":
-        relative_path = os.path.join("..","..","..","filtered_room_104.csv")
+        relative_path = os.path.join("filtered_room_104.csv")
+        Ns_t, Ne_t = 180, 190
     elif choice == "original":
-        relative_path = os.path.join("..","..","..","HVAC_B90_r104_exp_30m_20210727_15_min.csv")
+        relative_path = os.path.join("HVAC_B90_r104_exp_30m_20210727_15_min.csv")
+        Ns_t, Ne_t = 530, 560
     else:
         raise ValueError("Invalid choice: should be 'filtered' or 'original'")
 
@@ -35,7 +37,7 @@ def load_hvac_data(choice="filtered", start=1, train_amount=100):
     # Normalize all tensors
     temp, output, air, supply = map(normalize_tensor, [temp, output, air, supply])
 
-    return temp, supply, air, output, train_amount
+    return temp, supply, air, output, train_amount, Ns_t, Ne_t
 
 def generate_param_grid():
     param_grid = []
