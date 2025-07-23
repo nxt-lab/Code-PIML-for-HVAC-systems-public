@@ -1,9 +1,14 @@
 # python 3.11.8
 torch==2.2.2
 gpytorch==1.11
-tensorflow==2.10.0
-tensorflow-lattice==2.1.0
+# Run the Latticce model on the below versions
+# tensorflow==2.10.0
+# tensorflow-lattice==2.1.0
 numpy==1.26.4
 pandas==2.2.1
 matplotlib==3.8.0
 scikit-learn==1.3.0
+--extra-index-url https://download.pytorch.org/whl/cu126
+torch
+torchvision
+torchaudio
