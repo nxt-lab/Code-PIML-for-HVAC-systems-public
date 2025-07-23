@@ -13,8 +13,10 @@ train_amount = int(input("Enter number of training samples (e.g., 100): "))
 
 if choice == "filtered":
     relative_path = os.path.join("filtered_room_104.csv")
+    Ns_t, Ne_t = 180, 190
 elif choice == "original":
     relative_path = os.path.join("HVAC_B90_r104_exp_30m_20210727_15_min.csv")
+    Ns_t, Ne_t = 530, 560
 
 data = pd.read_csv(relative_path)
 room, airflow, supply = data["r104_room_temp"], data["r104_airflow_current"], data["r104_supply_discharge_temp"]
@@ -26,7 +28,7 @@ supply = torch.tensor(np.array(supply[start + 1:]).reshape(-1, 1), device=device
 
 temp, output, air, supply = map(normalize_tensor, [temp, output, air, supply])
 N_start, N_end = 1, train_amount  
-Ns_t, Ne_t = 530, 560
+
 
 T_tr, sup_tr, air_tr, output_tr = data_split(N_start, N_end, temp, supply, air, output)
 T_t, sup_t, air_t, output_t = data_split(Ns_t, Ne_t, temp, supply, air, output)
@@ -110,10 +112,10 @@ def evaluate_test_data(model, likelihood, X_test, y_test, num=1):
     print(f"\nR²: [{', '.join(f'{x:.4f}' for x in r2_list)}]")
     return rmse_list, mae_list, r2_list
 
-rmse_list, mae_list, r2_list = evaluate_test_data(model, likelihood, X_t, output_t, num=3)
-df = pd.DataFrame({'rmse': rmse_list,'mae': mae_list,'r2': r2_list})
-df = df.T
-df.to_csv(f'results_GP_{choice}_test_{N_end}.csv', index=True, header=True)
+# rmse_list, mae_list, r2_list = evaluate_test_data(model, likelihood, X_t, output_t, num=3)
+# df = pd.DataFrame({'rmse': rmse_list,'mae': mae_list,'r2': r2_list})
+# df = df.T
+# df.to_csv(f'results_GP_{choice}_test_{N_end}.csv', index=True, header=True)
 
 rmse_list, mae_list, r2_list = evaluate_test_data(model, likelihood, X_tr, output_tr, num=1)
 df = pd.DataFrame({'rmse': rmse_list,'mae': mae_list,'r2': r2_list})

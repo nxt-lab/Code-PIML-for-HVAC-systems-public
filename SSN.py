@@ -18,10 +18,9 @@ ini_weights = os.path.join("warmup_model_SSN.pth")
 choice = input("Choose dataset [filtered/original]: ").strip().lower()
 train_amount = int(input("Enter number of training samples (e.g., 100): "))
 
-temp, supply, air, output, N_end = load_hvac_data(choice=choice, start=1, train_amount=train_amount)
+temp, supply, air, output, N_end, Ns_t, Ne_t = load_hvac_data(choice=choice, start=1, train_amount=train_amount)
 
 N_start = 1
-Ns_t, Ne_t = 530, 560
 T_tr, sup_tr, air_tr, output_tr = data_split(N_start, N_end, temp, supply, air, output)
 T_t, sup_t, air_t, output_t = data_split(Ns_t, Ne_t, temp, supply, air, output)
 

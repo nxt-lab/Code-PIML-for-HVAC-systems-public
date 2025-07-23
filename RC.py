@@ -19,8 +19,10 @@ train_amount = int(input("Enter number of training samples (e.g., 100): "))
 
 if choice == "filtered":
     relative_path = os.path.join("filtered_room_104.csv")
+    Ns_t, Ne_t = 180, 190
 elif choice == "original":
     relative_path = os.path.join("HVAC_B90_r104_exp_30m_20210727_15_min.csv")
+    Ns_t, Ne_t = 530, 560
 
 data = pd.read_csv(relative_path)
 room = data["r104_room_temp"]
@@ -55,7 +57,6 @@ def data_split(N: int, N_e: int, temp: torch.Tensor, supply: torch.Tensor, air: 
 
 
 N_s, N_e = 1, train_amount  # Training range
-Ns_t, Ne_t = 530, 560
 
 temp_tr, supply_tr, air_tr, output_tr =  data_split(N_s, N_e, temp, supply, air, output)
 temp_t, supply_t, air_t, output_t = data_split(Ns_t, Ne_t, temp, supply, air, output)
